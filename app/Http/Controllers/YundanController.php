@@ -47,14 +47,16 @@ class YundanController extends Controller
            //获得临时存放绝对路径
            $tempPath = $file->getRealPath();
            //生成文件名
-           $fileName = date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
+           //$fileName = date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
            //存储文件
-           $bool = Storage::disk('uploads')->put($fileName,file_get_contents($tempPath));
+           //$bool = Storage::disk('uploads')->put($fileName,file_get_contents($tempPath));
            //接下来从excel中取数据
            //如果刚才存的文件成功了
-           if($bool){
+           //if($bool){
+           /*dd($tempPath);*/
+           if($tempPath){
                //从excel中get到了所有数据
-               $filePath = 'uploads/'.$fileName;
+               $filePath = $tempPath;
                $datas = Excel::load($filePath, function($reader) {
                })->get();
 
