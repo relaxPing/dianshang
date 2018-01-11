@@ -14,6 +14,6 @@
         </form>
     </div>
 </div>
-@include('layout\validator')
-@include('layout\message')
+@include('layout/validator')
+@include('layout/message')
 @stop

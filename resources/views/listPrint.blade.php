@@ -26,8 +26,8 @@
         </form>
     </div>
 </div>
-@include('layout\validator')
-@include('layout\message')
+@include('layout/validator')
+@include('layout/message')
 <div class="panel panel-default">
     <div class="panel-heading">运单数量：{{$yundans->total()}}</div>
     <div class="panel-body">
