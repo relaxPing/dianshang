@@ -24,7 +24,7 @@
     @show
 </header>
 <div class="container-fluid">
-    <div class="row webBody">
+    <div class="row webBody" style="height: 70%">
         <div class="col-sm-2 sidenav">
             <!--<ul class="list">
                 <a href="#" >运单</a>
@@ -58,6 +58,6 @@
 </body>
 
 <footer class="container-fluid text-center">
-    <p>@by Ping Xin</p>
+    <p>©2017 Ping Xin</p>
 </footer>
 </html>

@@ -53,9 +53,10 @@ class YundanController extends Controller
            //接下来从excel中取数据
            //如果刚才存的文件成功了
            //if($bool){
-           /*dd($tempPath);*/
+
            if($tempPath){
                //从excel中get到了所有数据
+               //直接从临时文件中获取excel数据
                $filePath = $tempPath;
                $datas = Excel::load($filePath, function($reader) {
                })->get();
