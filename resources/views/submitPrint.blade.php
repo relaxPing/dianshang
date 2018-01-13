@@ -7,6 +7,9 @@ $barcode = DNS1D::getBarcodePNG($ds, "C128")
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         *{
             font-weight: bold;
@@ -25,14 +28,15 @@ $barcode = DNS1D::getBarcodePNG($ds, "C128")
                 $c = confirm('该运单已经打印，确认再次打印吗？')
                 if($c){
                     window.print();
-                    history.back(-1);
+                    window.location.replace('listPrint');
                 }else{
-                    history.back(-1);
+                    //history.back(-1);
+                    window.location.replace('listPrint');
                 }
             }
             if({{$printedBefore}} == 0){
                 window.print();
-                history.back(-1);
+                window.location.replace('listPrint');
             }
          }
 
@@ -160,5 +164,14 @@ $barcode = DNS1D::getBarcodePNG($ds, "C128")
         </tbody>
     </table>
 </div>
+
+<audio id="chatAudio">
+    <source src="audio/success.ogg" />
+    <source src="audio/success.mp3" />
+    <source src="audio/success.wav" />
+</audio>
+<?php
+echo "<script>$('#chatAudio')[0].play()</script>";
+?>
 </body>
 </html>

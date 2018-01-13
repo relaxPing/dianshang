@@ -7,6 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         *{
             font-weight: bold;
@@ -17,7 +20,7 @@
         window.onload=function(){
 
             window.print();
-            history.go(-1);
+            window.location.replace('../listPrint');
         }
 
     </script>
@@ -144,5 +147,14 @@
         </tbody>
     </table>
 </div>
+
+<audio id="chatAudio">
+    <source src="../audio/success.ogg" />
+    <source src="../audio/success.mp3" />
+    <source src="../audio/success.wav" />
+</audio>
+<?php
+echo "<script>$('#chatAudio')[0].play()</script>";
+?>
 </body>
 </html>

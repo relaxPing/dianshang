@@ -29,7 +29,7 @@
 @include('layout/validator')
 @include('layout/message')
 <div class="panel panel-default">
-    <div class="panel-heading">运单数量：{{$yundans->total()}}</div>
+    <div class="panel-heading">运单数量：{{$yundans->total()}}  已打印数量:{{$ydsPrinted}}</div>
     <div class="panel-body">
         <table class="table ">
             <thead>

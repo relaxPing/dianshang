@@ -164,13 +164,16 @@ class YundanController extends Controller
 
         if($pici){
             $yundans = Yundan::where('pici_number',$pici)->orWhere('pici_number',' '.$pici)->paginate(25);
+            $yds = Yundan::where('pici_number',$pici)->orWhere('pici_number',' '.$pici)->get();
+            $ydsPrinted = $yds->where('isPrinted',1)->count();
             //$request->session()->put('pi', $pici);
             Session::put('pici',$pici);
             Session::save();
 
             return view('listPrint',[
                 'pici'=>$pici,
-                'yundans'=>$yundans
+                'yundans'=>$yundans,
+                'ydsPrinted'=>$ydsPrinted
             ]);
         }
 
@@ -247,6 +250,9 @@ class YundanController extends Controller
             //$piciYundans = Yundan::where('pici_number',$pici)->orWhere('pici_number',' '.$pici)->get();
             if(!Yundan::where('ydh',$ydh)->orWhere('ydh',' '.$ydh)->count()){
                 return redirect()->back()->withErrors('运单号不存在');
+            }
+            if(Yundan::where('ydh',$ydh)->orWhere('ydh',' '.$ydh)->first()->isPrinted == 1){
+                return redirect()->back()->withErrors('运单已打印');
             }
             //这里以后要改成不用验证空格的
             $yundan = Yundan::where('ydh',$ydh)->orWhere('ydh',' '.$ydh)->first();
