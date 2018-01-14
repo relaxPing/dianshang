@@ -1,3 +1,10 @@
+<?php
+    if(!\Illuminate\Support\Facades\Auth::check()){
+        header("Location:login");
+        exit;
+    }
+?>
+
 <html>
 <head>
     <title></title>
@@ -19,6 +26,7 @@
 </head>
 <body>
 <header>
+    <span class="pull-right"><a href="{{url('logout')}}"><button class="btn btn-default" style="margin:5px 5px 0px 5px">退出登录</button></a></span>
     @section('headPic')
     <img src="imgs/header.jpg" style="width: 100%;height: auto">
     @show

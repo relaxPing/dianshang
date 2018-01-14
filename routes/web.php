@@ -34,3 +34,11 @@ Route::any('export',['uses'=>'YundanController@export']);
 //打印 1.根据a标签链接打印  2.根据submit传过来的参数打印
 Route::any('dsPrint/{id}',['uses'=>'YundanController@dsPrint']);
 Route::any('submitPrint',['uses'=>'YundanController@submitPrint']);
+
+//注册登录
+//1.登录页面
+Route::get('login','LoginController@loginPage');
+//2.登录逻辑
+Route::post('login','LoginController@loginLogic');
+//3.登出
+Route::get('logout','LoginController@logout');
