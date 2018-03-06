@@ -42,3 +42,15 @@ Route::get('login','LoginController@loginPage');
 Route::post('login','LoginController@loginLogic');
 //3.登出
 Route::get('logout','LoginController@logout');
+
+
+
+//地址管理
+//1.地址列表展示页
+Route::any('ds_addresses',['uses' => 'AddressController@index']);
+//2.删除全部地址页
+Route::any('ds_ad_delAll',['uses' => 'AddressController@delAll']);
+//2.1根据id删除
+Route::any('ds_del_id/{id}',['uses' => 'AddressController@delById']);
+//3.添加地址
+Route::any('ds_ad_add',['uses' => 'AddressController@ds_ad_add']);

@@ -2,7 +2,7 @@
 @section('content')
 <h3>增加段号</h3>
 <div class="panel panel-default">
-    <div class="panel-heading">段号</div>
+    <div class="panel-heading">段号 <a href="{{url('ds_addresses')}}" class="btn btn-default">地址管理</a></div>
     <div class="panel-body">
         <form method="post" action="">
             {{csrf_field()}}

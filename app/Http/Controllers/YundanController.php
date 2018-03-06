@@ -37,6 +37,7 @@ class YundanController extends Controller
 
 
         //获取表单传来的文件 和 地址分段1（1-154） 2（155-308） 3（309-462）
+        //改：以后每个段号150个地址。
        $file = $request->file('piciExcel');
        $dsNumber = $request->input('dsNumber');
        if($file->isValid()){
@@ -73,14 +74,18 @@ class YundanController extends Controller
                //获得没使用的且最小的一个海关电商号 的ID！！注意 因为每批号有可能是不连续的如果直接用号会有bug
                $codeID = Code::where('isUsed',0)->orderBy('id')->first()->id;
                //addressID用于查从第几个开始
-               if($dsNumber ==1){
-                   $addressID = 1;
-               }elseif ($dsNumber == 2){
-                   $addressID = 155;
-               }elseif ($dsNumber == 3){
-                   $addressID = 309;
+               //1.先判断现有地址能分成几个 2.如果段号超出地址总数,错误提示；没有超出则赋值
+               //1.现有地址总数
+               $countAd = Address::count();
+               //1.1可用段号总数
+               $availableDsNum = $countAd/150;
+               //2.
+               if($dsNumber > $availableDsNum){
+                   Session::flash('error','地址号不存在 请检查后重新输入');
+                   return redirect()->back();
+               }else{
+                   $addressID = ($dsNumber - 1)*150 + 1;
                }
-
                 //开始对excel传进来的所有运单号进行遍历 加上海关单号(从codeID开始) 加上地址(从addressID开始)
                foreach ($datas as $data){
                    //出自excel里面的数据
@@ -101,7 +106,7 @@ class YundanController extends Controller
 
                     //加上地址信息
                         //先查出这个地址id对应的对象
-                    $address = Address::where('id',$addressID)->first();
+                    $address = Address::where('seq',$addressID)->first();
                     $yundan->receiver_name = $address -> r_name;
                     $yundan->receiver_mobile = $address -> r_mobile;
                     $yundan->receiver_address = $address -> r_address;
